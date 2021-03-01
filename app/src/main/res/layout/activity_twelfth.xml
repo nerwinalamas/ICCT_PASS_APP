@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TwelfthActivity">
+
+    <include layout ="@layout/appbar"
+        />
+
+    <ImageView
+        android:id="@+id/generate_qrcode"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Save to Phone"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_btn2"
+        android:layout_below="@+id/generate_qrcode"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>
