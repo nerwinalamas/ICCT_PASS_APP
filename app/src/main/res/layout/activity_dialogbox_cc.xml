@@ -25,32 +25,56 @@
         android:layout_margin="5dp"
         />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/class_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/class_name"
-        android:textSize="16sp"
-        android:layout_margin="5dp"
-        />
+        android:padding="5dp">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/subject_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/subject_code"
-        android:textSize="16sp"
-        android:layout_margin="5dp"
-        />
+        android:padding="5dp">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/section"
-        android:textSize="16sp"
-        android:layout_margin="5dp"
-        />
+        android:padding="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,8 +89,7 @@
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:background="@drawable/bg_btn2"
-            android:layout_marginStart="130dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="100dp"
             android:layout_marginBottom="10dp"
             />
 
@@ -77,6 +100,7 @@
             android:text="@string/add"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/bg_btn2" />
 
     </LinearLayout>

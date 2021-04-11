@@ -5,4 +5,9 @@
     <color name="basta2">#1566E0</color>
     <color name="color">#1566E0</color>
     <color name="gray">#9B9C9E</color>
+    <color name="green">#B7EDB9</color>
+    <color name="pink">#EABACA</color>
+    <color name="QRCodeBlackColor">#070707</color>
+    <color name="QRCodeWhiteColor">#FCFAFA</color>
+    <color name="light_gray">#CFCBCC</color>
 </resources>

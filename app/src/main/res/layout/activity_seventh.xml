@@ -6,60 +6,76 @@
     android:layout_height="match_parent"
     tools:context=".SeventhActivity">
 
-    <include layout="@layout/appbar"/>
+    <LinearLayout
+        android:id="@+id/bg_home"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/blue_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/wc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50sp"
+            android:text="Create"
+            android:textColor="@color/white"
+            android:layout_marginLeft="30dp"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Classroom"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerView_class"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar"
-        />
+        android:layout_marginBottom="100dp"
+        android:layout_below="@+id/bg_home"/>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="90sp"
-        android:layout_marginEnd="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="90sp"
         app:fab_addButtonColorNormal="@color/color"
-        app:fab_addButtonSize="normal"
         app:fab_addButtonColorPressed="@color/white"
-        app:fab_labelStyle="@style/float_title"
-        >
+        app:fab_addButtonSize="normal"
+        app:fab_labelStyle="@style/float_title">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/create_classroom"
+            android:id="@+id/fab_create_classroom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_title="Create Classroom"
+            app:fab_colorNormal="@color/color"
+            app:fab_colorPressed="@color/white"
             app:fab_icon="@drawable/ic_classroom"
-            app:fab_colorNormal="@color/color"
-            app:fab_colorPressed="@color/white"
-            app:fab_size="mini"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/create_event"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_title="Create Event"
-            app:fab_icon="@drawable/ic_event"
-            app:fab_colorNormal="@color/color"
-            app:fab_colorPressed="@color/white"
-            app:fab_size="mini"/>
+            app:fab_size="mini"
+            app:fab_title="Create Classroom" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/botnav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/color"
-        app:itemTextColor="@drawable/selector"
         app:itemIconTint="@drawable/selector"
-        app:menu="@menu/menu_nav"
-        android:layout_alignParentBottom="true"/>
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_nav" />
 
 
 </RelativeLayout>
