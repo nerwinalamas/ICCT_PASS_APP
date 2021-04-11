@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "62329228458",
+    "firebase_url": "https://icct-pass-app-default-rtdb.firebaseio.com",
+    "project_id": "icct-pass-app",
+    "storage_bucket": "icct-pass-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62329228458:android:30f22b09028ad0f98114d3",
+        "android_client_info": {
+          "package_name": "com.example.icctpassapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62329228458-k0ifka0n8ehparb8f5f0i5aa3g602pbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF0hAU-i4Lr0waOxlBZXE77Pt1Hn6RATw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62329228458-k0ifka0n8ehparb8f5f0i5aa3g602pbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

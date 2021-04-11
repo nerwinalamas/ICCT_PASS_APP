@@ -69,10 +69,10 @@ public class EighthActivity extends AppCompatActivity {
                 User userProfile = snapshot.getValue(User.class);
 
                 if (userProfile!=null){
-                    String fn = userProfile.Fullname;
-                    String e = userProfile.Email;
-                    String c = userProfile.Course;
-                    String pass = userProfile.Password;
+                    String fn = userProfile.getFullName();
+                    String e = userProfile.getEmail();
+                    String c = userProfile.getCourse();
+                    String pass = userProfile.getPassword();
 
                     fullname.setText(fn);
                     email.setText(e);

@@ -28,4 +28,8 @@ public class Classrooms {
         return section;
     }
 
+
+    public void setSection(String section) {
+        this.section = section;
+    }
 }
