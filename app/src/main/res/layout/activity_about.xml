@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity">
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        app:fab_colorPressed="@color/white"
+        app:fab_colorNormal="@color/color"
+        app:fab_icon="@drawable/ic_back2"
+        app:fab_size="normal"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/back">
+
+    <TextView
+        android:id="@+id/contact_to"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_round_corners"
+        android:hint="Our Story \n \nWe’re a sincere company with a straightforward vision.
+\nWe believe that there is an amazing amount to be learned by working
+In a “real-world” web production environment. Alongside other
+Like-minded students,
+with this in mind.
+\nWe began to gather people together to develop a mobile app that tracks an event or for study purposes.
+From our group of four members.
+After this slow start, we have a solid bound to decided to create,
+To be use on this day of a pandemic."
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+    </LinearLayout>
+
+</RelativeLayout>

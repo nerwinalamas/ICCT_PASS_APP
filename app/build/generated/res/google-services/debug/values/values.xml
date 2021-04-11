@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">62329228458-k0ifka0n8ehparb8f5f0i5aa3g602pbv.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">62329228458</string>
+    <string name="google_api_key" translatable="false">AIzaSyDF0hAU-i4Lr0waOxlBZXE77Pt1Hn6RATw</string>
+    <string name="google_app_id" translatable="false">1:62329228458:android:30f22b09028ad0f98114d3</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDF0hAU-i4Lr0waOxlBZXE77Pt1Hn6RATw</string>
+    <string name="google_storage_bucket" translatable="false">icct-pass-app.appspot.com</string>
+    <string name="project_id" translatable="false">icct-pass-app</string>
+</resources>
