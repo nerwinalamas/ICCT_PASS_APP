@@ -9,6 +9,7 @@
     <include layout="@layout/appbar" />
 
     <ScrollView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/app_bar"
@@ -20,13 +21,13 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <ImageView
-                android:id="@+id/generate_qrcode"
-                android:layout_width="280dp"
-                android:layout_height="280dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@color/light_gray" />
+<!--            <ImageView-->
+<!--                android:id="@+id/generate_qrcode"-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="280dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@color/light_gray" />-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fullname"
@@ -174,6 +175,14 @@
         </LinearLayout>
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/generate_qrcode"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_gray" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/botnav"
         android:layout_width="match_parent"
@@ -183,5 +192,7 @@
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/menu_nav" />
+
+
 
 </RelativeLayout>

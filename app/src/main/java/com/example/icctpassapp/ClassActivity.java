@@ -99,8 +99,7 @@ public class ClassActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         //TODO DAPAT TO USER ID LNG ANG LAMAN NG RESULT OR MAY MAKUHA KAYONG USERID
         Log.d(TAG, "Result Content: " + result.getContents());
-        String scannedUserId = "8ZkhjkRMoOW24MZuSBlZwnU4M3e2";
-//        String scannedUserId = result.getContents();
+        String scannedUserId = result.getContents();
         getUserInfo(scannedUserId);
     }
 

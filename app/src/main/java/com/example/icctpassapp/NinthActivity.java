@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -37,7 +38,11 @@ public class NinthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ninth);
+        //TODO ETO NLNG LAMAN NG PAGE NYO...
+        generate_img = (ImageView) findViewById(R.id.generate_qrcode);
+        displayQrCode();
 
+        //TODO MGA HND NA KELANGAN TO
         BottomNavigationView bottomNavigationView = findViewById(R.id.botnav);
         bottomNavigationView.setSelectedItemId(R.id.btm_create_qrcode);
 
@@ -51,7 +56,7 @@ public class NinthActivity extends AppCompatActivity {
         Address = (TextInputLayout) findViewById(R.id.address);
 
         btn_save = (Button) findViewById( R.id.btn_save);
-        generate_img = (ImageView) findViewById(R.id.generate_qrcode);
+
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +111,25 @@ public class NinthActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void displayQrCode(){
+        QRCodeWriter QR = new QRCodeWriter();
+        try {
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            BitMatrix bitMatrix = QR.encode(userId,
+                    BarcodeFormat.QR_CODE, 200, 200);
+
+            Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
+            for (int x = 0; x<200; x++){
+                for (int y=0; y<200; y++){
+                    bitmap.setPixel(x,y,bitMatrix.get(x,y)? Color.BLACK : Color.WHITE);
+                }
+            }
+            generate_img.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void GenerateButton(View view){
