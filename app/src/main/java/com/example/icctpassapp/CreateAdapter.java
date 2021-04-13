@@ -8,14 +8,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.icctpassapp.models.Classroom;
+
 import java.util.ArrayList;
 
 public class CreateAdapter extends RecyclerView.Adapter<CreateAdapter.CreateHolder> {
 
-    ArrayList<Classrooms> classroomsArrayList;
+    ArrayList<Classroom> classroomsArrayList;
     Context context;
 
-    public  CreateAdapter(Context context, ArrayList<Classrooms> classroomsArrayList){
+    public  CreateAdapter(Context context, ArrayList<Classroom> classroomsArrayList){
         this.classroomsArrayList = classroomsArrayList;
         this.context = context;
     }
@@ -29,20 +32,17 @@ public class CreateAdapter extends RecyclerView.Adapter<CreateAdapter.CreateHold
 
     @Override
     public void onBindViewHolder(@NonNull CreateHolder holder, int position) {
-        Classrooms classrooms = classroomsArrayList.get(position);
-        holder.className.setText(classrooms.getClassName());
+        Classroom classrooms = classroomsArrayList.get(position);
+        holder.className.setText(classrooms.getName());
         holder.subjectCode.setText(classrooms.getSubjectCode());
         holder.section.setText(classrooms.getSection());
-        holder.className.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, ClassActivity.class);
-                i.putExtra("className", classrooms.getClassName());
-                i.putExtra("subjectCode",classrooms.getSubjectCode());
-                i.putExtra("section", classrooms.getSection());
-                i.setFlags(i.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
-            }
+        holder.className.setOnClickListener(v -> {
+            Intent i = new Intent(context, ClassActivity.class);
+            i.putExtra("className", classrooms.getName());
+            i.putExtra("subjectCode",classrooms.getSubjectCode());
+            i.putExtra("section", classrooms.getSection());
+            i.setFlags(i.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
         });
     }
 

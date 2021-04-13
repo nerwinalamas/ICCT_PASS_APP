@@ -1,6 +1,7 @@
 package com.example.icctpassapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,11 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.icctpassapp.models.Classroom;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,17 +33,21 @@ import java.util.HashMap;
 public class SeventhActivity extends AppCompatActivity {
 
     FloatingActionButton floatingActionButton1;
-    private FirebaseDatabase db = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = db.getReference().child("Classrooms");
+    private DatabaseReference databaseReference;
     private CreateAdapter createAdapter;
-    private ArrayList<Classrooms> classes;
+    private ArrayList<Classroom> classes;
     private RecyclerView recyclerView;
     TextInputLayout className, subjectCode,section;
+    private String userId;
+    private ValueEventListener classRoomValueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seventh);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        userId = FirebaseAuth.getInstance().getUid();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.botnav);
         bottomNavigationView.setSelectedItemId(R.id.btm_create_classroom);
@@ -54,21 +62,7 @@ public class SeventhActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(createAdapter);
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Classrooms classrooms = dataSnapshot.getValue(Classrooms.class);
-                    classes.add(classrooms);
-                }
-                createAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        getClassRoom();
 
         //Floating Button
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
@@ -104,12 +98,17 @@ public class SeventhActivity extends AppCompatActivity {
                         classMap.put("subjectCode", sc);
                         classMap.put("section", s);
 
-                        reference.push().setValue(classMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(SeventhActivity.this, "Class added", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        Classroom c = new Classroom();
+                        c.setName(cn);
+                        c.setSubjectCode(sc);
+                        c.setSection(s);
+                        databaseReference
+                                .child("Classrooms")
+                                .child(userId)
+                                .push()
+                                .setValue(c, (error, ref) -> {
+                                    Toast.makeText(SeventhActivity.this, "Class added", Toast.LENGTH_SHORT).show();
+                                });
                         dialog.dismiss();
                     }
                 });
@@ -148,5 +147,39 @@ public class SeventhActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void getClassRoom(){
+        classRoomValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                classes.clear();
+                if(snapshot.hasChildren()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Classroom classroom = dataSnapshot.getValue(Classroom.class);
+                        classes.add(classroom);
+                    }
+                }
+                createAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        databaseReference
+                .child("Classrooms")
+                .child(userId)
+                .addValueEventListener(classRoomValueEventListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        databaseReference
+                .child("Classrooms")
+                .child(userId)
+                .removeEventListener(classRoomValueEventListener);
+        super.onDestroy();
     }
 }

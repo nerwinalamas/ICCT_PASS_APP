@@ -31,6 +31,7 @@
     </LinearLayout>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/id_event"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

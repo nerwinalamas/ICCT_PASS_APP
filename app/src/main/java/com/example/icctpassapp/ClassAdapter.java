@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.icctpassapp.models.Classroom;
 import com.example.icctpassapp.models.ScanStudents;
 
 import java.util.ArrayList;
@@ -34,7 +35,6 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
     public void onBindViewHolder(@NonNull ClassViewHolder holder, int position) {
         ScanStudents scan = scanStudents.get(position);
         User user = scan.getUser();
-        Classrooms classrooms = scan.getClassrooms();
 
         holder.bind(user);
     }

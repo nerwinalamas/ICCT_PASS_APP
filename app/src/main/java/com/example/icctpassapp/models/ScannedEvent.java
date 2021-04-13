@@ -2,9 +2,9 @@ package com.example.icctpassapp.models;
 
 import com.example.icctpassapp.User;
 
-public class ScanStudents {
+public class ScannedEvent {
     private User user;
-    private Classroom classrooms;
+    private Events events;
 
     public User getUser() {
         return user;
@@ -14,11 +14,11 @@ public class ScanStudents {
         this.user = user;
     }
 
-    public Classroom getClassrooms() {
-        return classrooms;
+    public Events getEvents() {
+        return events;
     }
 
-    public void setClassrooms(Classroom classrooms) {
-        this.classrooms = classrooms;
+    public void setEvents(Events events) {
+        this.events = events;
     }
 }

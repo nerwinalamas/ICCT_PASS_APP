@@ -1,19 +1,16 @@
-package com.example.icctpassapp;
+package com.example.icctpassapp.models;
 
-public class Classrooms {
-    String className;
-    String subjectCode;
-    String section;
+public class Classroom {
+    private String name;
+    private String subjectCode;
+    private String section;
 
-    public Classrooms() {
+    public String getName() {
+        return name;
     }
 
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSubjectCode() {
@@ -27,7 +24,6 @@ public class Classrooms {
     public String getSection() {
         return section;
     }
-
 
     public void setSection(String section) {
         this.section = section;

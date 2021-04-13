@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".EventActivity">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/event"
@@ -14,6 +12,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -24,6 +23,7 @@
             android:layout_marginTop="45dp"/>
 
         <TextView
+            android:id="@+id/tv_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -32,6 +32,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -42,13 +43,14 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_above="@id/ll_scan"
         android:id="@+id/recyclerView_event"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_height="match_parent"
         android:layout_below="@id/event"/>
 
     <LinearLayout
+        android:id="@+id/ll_scan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.icctpassapp.models.Events;
+
 import java.util.ArrayList;
 
 public class CreateAdapter2 extends RecyclerView.Adapter<CreateAdapter2.CreateViewHolder2> {
 
-    private Context context2;
-    private ArrayList id, eventName, eventLocation, time;
+    private ArrayList<Events> eventsList;
 
     private OnItemClickListener onItemClickListener2;
 
@@ -24,33 +26,30 @@ public class CreateAdapter2 extends RecyclerView.Adapter<CreateAdapter2.CreateVi
         this.onItemClickListener2 = onItemClickListener2;
     }
 
-    CreateAdapter2(Context context2,ArrayList id, ArrayList eventName, ArrayList eventLocation, ArrayList time){
-        this.context2 = context2;
-        this.id = id;
-        this.eventName = eventName;
-        this.eventLocation = eventLocation;
-        this.time = time;
+    CreateAdapter2(ArrayList<Events> eventsList){
+       this.eventsList = eventsList;
     }
 
     @NonNull
     @Override
     public CreateViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context2);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_create_item2, parent, false);
         return new CreateViewHolder2(view, onItemClickListener2);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final CreateViewHolder2 holder, final int position) {
-        holder.id.setText(String.valueOf(id.get(position)));
-        holder.eventName.setText(String.valueOf(eventName.get(position)));
-        holder.eventLocation.setText(String.valueOf(eventLocation.get(position)));
-        holder.time.setText(String.valueOf(time.get(position)));
+        Events events = eventsList.get(position);
+        holder.id.setText(events.getEventId());
+        holder.eventName.setText(events.getName());
+        holder.eventLocation.setText(events.getLocation());
+        holder.time.setText(events.getTime());
     }
 
     @Override
     public int getItemCount() {
-        return id.size();
+        return eventsList.size();
     }
 
     class CreateViewHolder2 extends RecyclerView.ViewHolder {

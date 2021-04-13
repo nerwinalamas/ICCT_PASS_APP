@@ -15,9 +15,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.icctpassapp.models.Classroom;
 import com.example.icctpassapp.models.ScanStudents;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,8 +45,10 @@ public class ClassActivity extends AppCompatActivity {
     String className;
     String subjectCode;
     String section;
+    String userId;
 
     private ArrayList<ScanStudents> scanStudentsList;
+    private ValueEventListener classValueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class ClassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_class);
 
         db = FirebaseDatabase.getInstance();
+        userId = FirebaseAuth.getInstance().getUid();
 
         cn = (TextView) findViewById(R.id.tv_class);
         sc = (TextView) findViewById(R.id.tv_subject);
@@ -97,7 +102,6 @@ public class ClassActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        //TODO DAPAT TO USER ID LNG ANG LAMAN NG RESULT OR MAY MAKUHA KAYONG USERID
         Log.d(TAG, "Result Content: " + result.getContents());
         String scannedUserId = result.getContents();
         getUserInfo(scannedUserId);
@@ -113,13 +117,7 @@ public class ClassActivity extends AppCompatActivity {
                         Log.d(TAG, "onDataChange: " + snapshot);
                         User userProfile = snapshot.getValue(User.class);
                         if(userProfile != null) {
-                            String email = (String) snapshot.child("Email").getValue();
-                            String fullName = (String) snapshot.child("Fullname").getValue();
-                            String course = (String) snapshot.child("Course").getValue();
                             userProfile.setUserId(userId);
-                            userProfile.setEmail(email);
-                            userProfile.setFullName(fullName);
-                            userProfile.setCourse(course);
                             writeScannedStudent(userProfile);
                             Log.d(TAG, "User Full name: " + userProfile.getFullName());
                         } else
@@ -134,47 +132,61 @@ public class ClassActivity extends AppCompatActivity {
     }
 
     private void getAllScannedStudents(){
+        classValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                scanStudentsList.clear();
+                if(snapshot.hasChildren()){
+                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                        ScanStudents scanStudent = dataSnapshot.getValue(ScanStudents.class);
+                        scanStudentsList.add(scanStudent);
+                    }
+                }
+                classAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
         db.getReference()
-                .child("scan_students")
+                .child("scan_classroom")
+                .child(userId)
                 .child(subjectCode)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        scanStudentsList.clear();
-                        if(snapshot.hasChildren()){
-                            for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                                ScanStudents scanStudent = dataSnapshot.getValue(ScanStudents.class);
-                                scanStudentsList.add(scanStudent);
-                            }
-                            classAdapter.notifyDataSetChanged();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                .addValueEventListener(classValueEventListener);
     }
 
     private void writeScannedStudent(User user){
         ScanStudents scanStudents = new ScanStudents();
         scanStudents.setUser(user);
 
-        Classrooms classrooms = new Classrooms();
-        classrooms.setClassName(className);
+        Classroom classrooms = new Classroom();
+        classrooms.setName(className);
         classrooms.setSubjectCode(subjectCode);
         classrooms.setSection(section);
 
         scanStudents.setClassrooms(classrooms);
         db.getReference()
-                .child("scan_students")
+                .child("scan_classroom")
+                .child(userId)
                 .child(subjectCode)
-                .push()
+                .child(user.getUserId())
                 .setValue(scanStudents)
                 .addOnCompleteListener(task -> {
-                    scanStudentsList.add(scanStudents);
-                    classAdapter.notifyDataSetChanged();
+//                    scanStudentsList.add(scanStudents);
+//                    classAdapter.notifyDataSetChanged();
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        db.getReference()
+                .child("scan_classroom")
+                .child(userId)
+                .child(subjectCode)
+                .removeEventListener(classValueEventListener);
+        super.onDestroy();
     }
 }
