@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class FourthActivity extends AppCompatActivity {
 
-    private TextInputLayout Fullname, Course, Password, Email;
+    private TextInputLayout fullname, course, password, email;
     private Button signup;
     private FirebaseAuth mAuth;
 
@@ -31,56 +31,55 @@ public class FourthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
 
-        Fullname = (TextInputLayout) findViewById(R.id.fullname);
-        Course = (TextInputLayout) findViewById(R.id.course);
-        Email = (TextInputLayout) findViewById(R.id.email);
-        Password = (TextInputLayout) findViewById(R.id.password);
+        fullname = (TextInputLayout) findViewById(R.id.fullname);
+        course = (TextInputLayout) findViewById(R.id.course);
+        email = (TextInputLayout) findViewById(R.id.email);
+        password = (TextInputLayout) findViewById(R.id.password);
         signup = (Button) findViewById(R.id.btn_signup);
-
 
         mAuth = FirebaseAuth.getInstance();
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fn = Fullname.getEditText().getText().toString().trim();
-                String c = Course.getEditText().getText().toString().trim();
-                String e = Email.getEditText().getText().toString().trim();
-                String pass = Password.getEditText().getText().toString().trim();
+                String fn = fullname.getEditText().getText().toString().trim();
+                String c = course.getEditText().getText().toString().trim();
+                String e = email.getEditText().getText().toString().trim();
+                String pass = password.getEditText().getText().toString().trim();
 
                 if (fn.isEmpty()) {
-                    Fullname.setError("Full Name is required");
-                    Fullname.requestFocus();
+                    fullname.setError("Full Name is required");
+                    fullname.requestFocus();
                     return;
                 }
 
                 if (c.isEmpty()) {
-                    Course.setError("Course is required");
-                    Course.requestFocus();
+                    course.setError("Course is required");
+                    course.requestFocus();
                     return;
                 }
 
                 if (e.isEmpty()) {
-                    Email.setError("Email is required");
-                    Email.requestFocus();
+                    email.setError("Email is required");
+                    email.requestFocus();
                     return;
                 }
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(e).matches()) {
-                    Email.setError("Please provide valid email!");
-                    Email.requestFocus();
+                    email.setError("Please provide valid email!");
+                    email.requestFocus();
                     return;
                 }
 
                 if (pass.isEmpty()) {
-                    Password.setError("Password is required");
-                    Password.requestFocus();
+                    password.setError("Password is required");
+                    password.requestFocus();
                     return;
                 }
 
                 if (pass.length() < 6) {
-                    Password.setError("Minimum password length should be 6 characters!");
-                    Password.requestFocus();
+                    password.setError("Minimum password length should be 6 characters!");
+                    password.requestFocus();
                 }
 
                 mAuth.createUserWithEmailAndPassword(e, pass)
@@ -89,7 +88,7 @@ public class FourthActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (task.isSuccessful()) {
-                                    User user = new User(fn, e, pass, c);
+                                    User user = new User(fn, c, e, pass);
                                     FirebaseDatabase.getInstance().getReference("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
