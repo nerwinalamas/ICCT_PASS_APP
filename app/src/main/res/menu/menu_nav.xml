@@ -12,6 +12,11 @@
         android:icon="@drawable/ic_event2"/>
 
     <item
+        android:id="@+id/btm_appointment"
+        android:title="Appointment"
+        android:icon="@drawable/ic_schedule"/>
+
+    <item
         android:id="@+id/btm_create_qrcode"
         android:title="Create "
         android:icon="@drawable/ic_qrcode"/>

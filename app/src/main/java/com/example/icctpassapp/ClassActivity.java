@@ -1,34 +1,32 @@
 package com.example.icctpassapp;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.icctpassapp.models.Classroom;
 import com.example.icctpassapp.models.ScanStudents;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+
+//import java.awt.Button;
 
 public class ClassActivity extends AppCompatActivity {
 
@@ -50,6 +48,8 @@ public class ClassActivity extends AppCompatActivity {
     private ArrayList<ScanStudents> scanStudentsList;
     private ValueEventListener classValueEventListener;
 
+    FloatingActionButton fab_dl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,8 @@ public class ClassActivity extends AppCompatActivity {
         cn = (TextView) findViewById(R.id.tv_class);
         sc = (TextView) findViewById(R.id.tv_subject);
         s = (TextView) findViewById(R.id.tv_section);
+
+        fab_dl = (FloatingActionButton) findViewById (R.id.download_btn_class);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_class);
         recyclerView.setHasFixedSize(true);
@@ -95,6 +97,14 @@ public class ClassActivity extends AppCompatActivity {
             }
         });
         getAllScannedStudents();
+
+        //CLASS DOWNLOAD BUTTON
+        fab_dl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Download Button Classroom");
+            }
+        });
 
     }
 

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/appbar"
+        android:id="@+id/app_bar"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/health_dec_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Health Declaration Form"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                android:textSize="25dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="200dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temperature: "
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textFontWeight="700"
+                    />
+
+
+                <TextView
+                    android:id="@+id/vi_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="36.5"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:textFontWeight="700"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/vi_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: Juan Dela Cruz"
+                android:textSize="16sp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                />
+
+            <TextView
+                android:id="@+id/vi_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact no.: 09123456789"
+                android:textSize="16sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                />
+
+            <TextView
+                android:id="@+id/vi_purpose_of_visit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purpose of Visit: Enrollment"
+                android:textSize="16sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                />
+
+            <TextView
+                android:id="@+id/vi_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address: Cainta, Rizal"
+                android:textSize="16sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                >
+
+                <!--Question 1-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Are you experiencing Sore throat, Body pain, Headache, or Fever?"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textFontWeight="700"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:id="@+id/vi_question1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                </LinearLayout>
+
+                <!--Question 2-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Have you worked together or stayed in the same close environment of a confirmed COVID-19 case? "
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                    <TextView
+                        android:id="@+id/vi_question2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                </LinearLayout>
+
+                <!--Question 3-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Have you had any contact with anyone with fever, cough, colds and sore throat in the past 2 weeks?"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                    <TextView
+                        android:id="@+id/vi_question3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                </LinearLayout>
+
+                <!--Question 4-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Have you travelled outside of the Philippines in the last 14 days? "
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                    <TextView
+                        android:id="@+id/vi_question4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                </LinearLayout>
+
+                <!--Question 5-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Do you have any comorbidities, immunodeficiency or other health risk?"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                    <TextView
+                        android:id="@+id/vi_question5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textFontWeight="700"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

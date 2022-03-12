@@ -31,10 +31,10 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/icctpassapp"
+                android:id="@+id/gavs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ICCT PASS APP"
+                android:text="GAVS"
                 android:textColor="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold"
@@ -42,9 +42,20 @@
                 android:layout_marginLeft="50dp"
                 android:layout_below="@+id/wc"
                 />
+            <TextView
+                android:id="@+id/smartAttendance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Smart Attendance"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:layout_below="@+id/gavs"
+                />
 
         </RelativeLayout>
-
 
     </FrameLayout>
 

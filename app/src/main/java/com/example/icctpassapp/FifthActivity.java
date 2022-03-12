@@ -1,16 +1,15 @@
 package com.example.icctpassapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -53,8 +52,8 @@ public class FifthActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String e = Email.getEditText().getText().toString();
-                String pass = Password.getEditText().getText().toString();
+                String e = Email.getEditText().getText().toString().trim();
+                String pass = Password.getEditText().getText().toString().trim();
 
                 if (e.isEmpty()) {
                     Email.setError("Email is required");

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HealthDeclarationFormActivity">
+
+    <include layout="@layout/appbar"
+        android:id="@+id/app_bar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/health_dec_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Health Declaration Form"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textFontWeight="700"
+                android:textAlignment="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/text_fields"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_below="@id/health_dec_title"
+                android:padding="20dp">
+
+                <!--Name-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hd_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:inputType="text"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Address-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hd_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:inputType="text"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Contact No.-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hd_contact_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contact No.">
+
+                    <com.google.android.material.textfield.TextInputEditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:inputType="phone"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Purpose of Visit-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hd_purpose_of_visit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Purpose of Visit">
+
+                    <com.google.android.material.textfield.TextInputEditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:inputType="text"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Temperature-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hd_temperature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Temperature">
+
+                    <com.google.android.material.textfield.TextInputEditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="10dp"
+                        android:inputType="numberDecimal"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <!--Question #1-->
+            <LinearLayout
+                android:id="@+id/question1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/text_fields">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="Are you experiencing Sore throat, Body pain, Headache, or Fever? "
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/hd_rg1_yesOrNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/hd_q1_yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Yes"/>
+                        <RadioButton
+                            android:id="@+id/hd_q1_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="No"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--Question #2-->
+            <LinearLayout
+                android:id="@+id/question2"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/question1">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="Have you worked together or stayed in the same close environment of a confirmed COVID-19 case? "
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/hd_rg2_yesOrNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/hd_q2_yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Yes"/>
+                        <RadioButton
+                            android:id="@+id/hd_q2_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="No"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--Question #3-->
+            <LinearLayout
+                android:id="@+id/question3"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/question2">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="Have you had any contact with anyone with fever, cough, colds and sore throat in the past 2 weeks?"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/hd_rg3_yesOrNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/hd_q3_yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Yes"/>
+                        <RadioButton
+                            android:id="@+id/hd_q3_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="No"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--Question #4-->
+            <LinearLayout
+                android:id="@+id/question4"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/question3">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="Have you travelled outside of the Philippines in the last 14 days? "
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/hd_rg4_yesOrNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/hd_q4_yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Yes"/>
+                        <RadioButton
+                            android:id="@+id/hd_q4_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="No"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--Question #5-->
+            <LinearLayout
+                android:id="@+id/question5"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/question4">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="Do you have any comorbidities, immunodeficiency or other health risk?"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:id="@+id/hd_rg5_yesOrNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/hd_q5_yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Yes"/>
+                        <RadioButton
+                            android:id="@+id/hd_q5_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="No"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Confirmation-->
+            <LinearLayout
+                android:id="@+id/confirmation_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_below="@id/question5">
+
+                <CheckBox
+                    android:id="@+id/hd_confirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    >
+
+                </CheckBox>
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:text='I hereby authorized ICCT Colleges Foundation Inc. to collect and process the data indicated herein for the purpose of effecting control of the COVID-19 infection. I understand that any personal information is protected by RA 10173 "Data Privacy Act of 2012" and that I am required by RA 11409 "Bayanihan to Heal as one Act" to provide truthful information.'
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/hd_btn_generate_qr"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn2"
+                android:text="Generate QR"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/confirmation_checkbox"/>
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

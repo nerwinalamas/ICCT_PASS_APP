@@ -1,8 +1,5 @@
 package com.example.icctpassapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -90,6 +90,14 @@ public class EighthActivity extends AppCompatActivity {
             }
         });
 
+        fullname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), UpdateProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
         contact_us.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,10 +142,33 @@ public class EighthActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), NinthActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
+                    case R.id.btm_appointment:
+                        startActivity(new Intent(getApplicationContext(),AppointmentActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                 }
                 return false;
             }
         });
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_nav_profile, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        switch (id){
+//            case R.id.edit_profile:
+//                startActivity(new Intent(getApplicationContext(),NinthActivity.class));
+//                break;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//        return true;
+//    }
 }

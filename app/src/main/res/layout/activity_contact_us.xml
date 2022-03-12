@@ -36,6 +36,16 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/contact_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_round_corners"
+            android:hint="Enter Your Email"
+            android:padding="15dp"
+            android:inputType="text"/>
+
+        <EditText
             android:id="@+id/contact_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

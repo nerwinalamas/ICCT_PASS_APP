@@ -1,11 +1,5 @@
 package com.example.icctpassapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icctpassapp.models.Events;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -135,6 +134,10 @@ public class SixthActivity extends AppCompatActivity {
                         return true;
                     case R.id.btm_create_qrcode:
                         startActivity(new Intent(getApplicationContext(),NinthActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.btm_appointment:
+                        startActivity(new Intent(getApplicationContext(),AppointmentActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }

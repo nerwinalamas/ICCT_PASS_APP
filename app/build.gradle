@@ -59,4 +59,6 @@ dependencies {
     //implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
 
+    //csv file
+    implementation 'com.opencsv:opencsv:4.6'
 }

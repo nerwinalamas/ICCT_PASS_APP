@@ -1,11 +1,8 @@
 package com.example.icctpassapp;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icctpassapp.models.Events;
 import com.example.icctpassapp.models.ScannedEvent;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +37,8 @@ public class EventActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     String userId;
     ValueEventListener scannedEventListener;
+    FloatingActionButton fab_dl;
+//    String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyAttendace.csv");
 
     private final String TAG = "EventActivityTAG";
 
@@ -52,6 +52,7 @@ public class EventActivity extends AppCompatActivity {
         TextView tvName = findViewById(R.id.tv_name);
         TextView tvLocation = findViewById(R.id.tv_location);
         TextView tvTime = findViewById(R.id.tv_time);
+        fab_dl = (FloatingActionButton) findViewById (R.id.download_btn_event);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userId = FirebaseAuth.getInstance().getUid();
@@ -78,6 +79,28 @@ public class EventActivity extends AppCompatActivity {
             intentIntegrator.setCaptureActivity(ScanQR2.class);
             intentIntegrator.initiateScan();
         });
+
+          //EVENT DOWNLOAD BUTTON
+//        fab_dl.setOnClickListener(view -> {
+//
+//            CSVWriter writer = null;
+//            try {
+//                writer = new CSVWriter(new FileWriter(csv));
+//
+//                List<String[]> data = new ArrayList<String[]>();
+//                data.add(new String[]{"Country", "Capital"});
+//                data.add(new String[]{"India", "New Delhi"});
+//                data.add(new String[]{"United States", "Washington D.C"});
+//                data.add(new String[]{"Germany", "Berlin"});
+//
+//                writer.writeAll(data); // data is adding to csv
+//
+//                writer.close();
+//                //callRead();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
 
     @Override
