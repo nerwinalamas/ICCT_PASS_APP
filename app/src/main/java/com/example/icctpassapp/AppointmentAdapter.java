@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>{
 
-    private ArrayList<ScannedAppointment> listAppointment;
+    private ArrayList<HealthForm> healthForms;
 
-    public AppointmentAdapter(ArrayList<ScannedAppointment> listAppointment) {
-        this.listAppointment = listAppointment;
+    public AppointmentAdapter(ArrayList<HealthForm> healthForms) {
+        this.healthForms = healthForms;
     }
 
     @NonNull
@@ -31,8 +31,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull AppointmentViewHolder holder, int position) {
-        ScannedAppointment e = listAppointment.get(position);
-        HealthForm healthForm = e.getHealthForm();
+        HealthForm healthForm = healthForms.get(position);
         holder.bind(healthForm);
 //        holder.bind(e.getUser());
 //        e.getAppointments();
@@ -42,7 +41,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     @Override
     public int getItemCount() {
-        return listAppointment.size();
+        return healthForms.size();
     }
 
     public class AppointmentViewHolder extends RecyclerView.ViewHolder {

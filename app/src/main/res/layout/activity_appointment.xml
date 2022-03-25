@@ -63,7 +63,7 @@
             app:fab_colorPressed="@color/white"
             app:fab_icon="@drawable/ic_health"
             app:fab_size="mini"
-            app:fab_title="Health Declaration Form"/>
+            app:fab_title="Health Declaration Form" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_create_room"
@@ -73,7 +73,7 @@
             app:fab_colorPressed="@color/white"
             app:fab_icon="@drawable/ic_event"
             app:fab_size="mini"
-            app:fab_title="Daily Visitors"/>
+            app:fab_title="Daily Visitors" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
