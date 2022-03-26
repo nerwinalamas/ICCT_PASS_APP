@@ -1,7 +1,15 @@
 package com.example.icctpassapp;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.icctpassapp.models.Events;
+import com.example.icctpassapp.models.ScanStudents;
 import com.example.icctpassapp.models.ScannedEvent;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +34,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Locale;
+
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -41,6 +58,7 @@ public class EventActivity extends AppCompatActivity {
 //    String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyAttendace.csv");
 
     private final String TAG = "EventActivityTAG";
+    private WritableWorkbook writableWorkbook;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,26 +99,65 @@ public class EventActivity extends AppCompatActivity {
         });
 
           //EVENT DOWNLOAD BUTTON
-//        fab_dl.setOnClickListener(view -> {
-//
-//            CSVWriter writer = null;
-//            try {
-//                writer = new CSVWriter(new FileWriter(csv));
-//
-//                List<String[]> data = new ArrayList<String[]>();
-//                data.add(new String[]{"Country", "Capital"});
-//                data.add(new String[]{"India", "New Delhi"});
-//                data.add(new String[]{"United States", "Washington D.C"});
-//                data.add(new String[]{"Germany", "Berlin"});
-//
-//                writer.writeAll(data); // data is adding to csv
-//
-//                writer.close();
-//                //callRead();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
+        fab_dl.setOnClickListener(view -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+                }else{
+                    createExcelSheet();
+                }
+            }else{
+                createExcelSheet();
+            }
+        });
+    }
+
+    private void createExcelSheet(){
+        Log.d(TAG, "Creating Excel File");
+//        val  = File("${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}/$csvFile")
+        WorkbookSettings wbSettings = new WorkbookSettings();
+        wbSettings.setLocale(new Locale("en", "EN"));
+        try {
+            ContentResolver resolver = getContentResolver();
+            ContentValues cv = new ContentValues();
+            cv.put(MediaStore.MediaColumns.DISPLAY_NAME, events.getName());
+            cv.put(MediaStore.MediaColumns.MIME_TYPE, "application/vnd.ms-excel");
+            cv.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+            Uri uri = resolver.insert(MediaStore.Files.getContentUri("external"), cv);
+            OutputStream outputStream = resolver.openOutputStream(uri);
+
+            writableWorkbook = Workbook.createWorkbook(outputStream, wbSettings);
+            WritableSheet sheet = writableWorkbook.createSheet("sheet1", 0);
+            sheet.addCell(new Label(0, 0, "Name"));
+            sheet.addCell(new Label(1, 0, "Course"));
+            sheet.addCell(new Label(2, 0, "Email"));
+
+            for(int i = 0; scannedEvents.size() > i; i++){
+                ScannedEvent sf = scannedEvents.get(i);
+                User user = sf.getUser();
+                int position = i+1;
+                sheet.addCell(new Label(0, position, user.getFullName()));
+                sheet.addCell(new Label(1, position, user.getCourse()));
+                sheet.addCell(new Label(2, position, user.getEmail()));
+            }
+
+            writableWorkbook.write();
+            writableWorkbook.close();
+            Toast.makeText(this, "Successfully downloaded!", Toast.LENGTH_LONG).show();;
+        } catch (Exception e) {
+            Log.d(TAG, "createExcelSheet: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 100 && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            createExcelSheet();
+        }else
+            Toast.makeText(this, "Please grant permission to proceed.", Toast.LENGTH_LONG).show();
     }
 
     @Override
